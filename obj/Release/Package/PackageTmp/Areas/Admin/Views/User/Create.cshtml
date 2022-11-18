@@ -1,0 +1,91 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.UserViewModel.CreateEditUserViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<style>
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+
+                    <div class="col-sm-6 col-10 mb-md-4 mt-2 mb-xl-0 mb-0">
+                        <h4 class="card-title">Add New User</h4>
+                    </div>
+                    <div class="col-sm-6 col-2">
+                        <div class="d-flex align-items-center justify-content-md-end">
+                            <div class="pr-1 mb-3 mb-xl-0">
+                                <a href="@Url.Action("Index","User")" class="btn btn-danger btn-rounded btn-icon plus-btn">
+                                    <i class="mdi mdi-close"></i>
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+
+                            @using (Html.BeginForm("Create", "User", FormMethod.Post))
+                            {
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+
+                                            @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })
+                                            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @id = "formrow-firstname-input", @placeholder = "Enter Name" })
+                                            @Html.ValidationMessageFor(m => m.Name)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+
+                                            @Html.LabelFor(m => m.RoleId, "Select Role", new { @class = "form-label" })
+                                            @Html.DropDownListFor(m => m.RoleId, Model.SelectRoleList, "--Select--", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(m => m.RoleId)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+
+                                            @Html.LabelFor(m => m.UserName, "UserName", new { @class = "form-label" })
+                                            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", @id = "formrow-firstname-input", @placeholder = "Enter User Name" })
+                                            @Html.ValidationMessageFor(m => m.UserName)
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+
+                                            @Html.LabelFor(m => m.Pwd, "Password", new { @class = "form-label" })
+                                            @Html.TextBoxFor(m => m.Pwd, new { @class = "form-control", @id = "formrow-firstname-input", @placeholder = "Enter Pwd" })
+                                            @Html.ValidationMessageFor(m => m.Pwd)
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+
+                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form Layout -->

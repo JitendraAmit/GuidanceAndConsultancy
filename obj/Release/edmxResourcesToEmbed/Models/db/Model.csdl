@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DishaGuidanceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Mst_Class">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Mst_Norms" Relationship="Self.FK__Mst_Norms__Class__239E4DCF" FromRole="Mst_Class" ToRole="Mst_Norms" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Mst_Stude__Class__2E1BDC42" FromRole="Mst_Class" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Mst_Gender">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Mst_Stude__Gende__2B3F6F97" FromRole="Mst_Gender" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Mst_Login">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Pwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="RoleId" Type="Int32" />
+    <NavigationProperty Name="Mst_Role" Relationship="Self.FK__Mst_Login__RoleI__38996AB5" FromRole="Mst_Login" ToRole="Mst_Role" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Mst_Stude__Creat__2F10007B" FromRole="Mst_Login" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Mst_Norms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ClassId" Type="Int32" />
+    <Property Name="SchoolTypeId" Type="Int32" />
+    <Property Name="SubTestId" Type="Int32" />
+    <Property Name="MinRange" Type="Int32" />
+    <Property Name="MaxRange" Type="Int32" />
+    <Property Name="StenScore" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Mst_Class" Relationship="Self.FK__Mst_Norms__Class__239E4DCF" FromRole="Mst_Norms" ToRole="Mst_Class" />
+    <NavigationProperty Name="Mst_SchoolType" Relationship="Self.FK__Mst_Norms__Mst_S__24927208" FromRole="Mst_Norms" ToRole="Mst_SchoolType" />
+    <NavigationProperty Name="Mst_SubTest" Relationship="Self.FK__Mst_Norms__SubTe__25869641" FromRole="Mst_Norms" ToRole="Mst_SubTest" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK__Student_R__Norms__33D4B598" FromRole="Mst_Norms" ToRole="Student_Result" />
+  </EntityType>
+  <EntityType Name="Mst_Performance">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MinRange" Type="Int32" />
+    <Property Name="MaxRange" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK__Student_R__Perfo__34C8D9D1" FromRole="Mst_Performance" ToRole="Student_Result" />
+  </EntityType>
+  <EntityType Name="Mst_Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Mst_Login" Relationship="Self.FK__Mst_Login__RoleI__38996AB5" FromRole="Mst_Role" ToRole="Mst_Login" />
+  </EntityType>
+  <EntityType Name="Mst_School">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="SchoolTypeId" Type="Int32" />
+    <Property Name="SchoolMediumId" Type="Int32" />
+    <NavigationProperty Name="Mst_SchoolType" Relationship="Self.FK__Mst_Schoo__Schoo__14270015" FromRole="Mst_School" ToRole="Mst_SchoolType" />
+    <NavigationProperty Name="Mst_SchoolMedium" Relationship="Self.FK__Mst_Schoo__Schoo__17036CC0" FromRole="Mst_School" ToRole="Mst_SchoolMedium" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Mst_Stude__Schoo__2D27B809" FromRole="Mst_School" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Mst_SchoolMedium">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <NavigationProperty Name="Mst_School" Relationship="Self.FK__Mst_Schoo__Schoo__17036CC0" FromRole="Mst_SchoolMedium" ToRole="Mst_School" />
+  </EntityType>
+  <EntityType Name="Mst_SchoolType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Mst_Norms" Relationship="Self.FK__Mst_Norms__Mst_S__24927208" FromRole="Mst_SchoolType" ToRole="Mst_Norms" />
+    <NavigationProperty Name="Mst_School" Relationship="Self.FK__Mst_Schoo__Schoo__14270015" FromRole="Mst_SchoolType" ToRole="Mst_School" />
+  </EntityType>
+  <EntityType Name="Mst_Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GenderId" Type="Int32" />
+    <Property Name="SchoolId" Type="Int32" />
+    <Property Name="ClassId" Type="Int32" />
+    <Property Name="ContactNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="IsVerified" Type="Boolean" />
+    <Property Name="Suggestions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mst_Class" Relationship="Self.FK__Mst_Stude__Class__2E1BDC42" FromRole="Mst_Student" ToRole="Mst_Class" />
+    <NavigationProperty Name="Mst_Gender" Relationship="Self.FK__Mst_Stude__Gende__2B3F6F97" FromRole="Mst_Student" ToRole="Mst_Gender" />
+    <NavigationProperty Name="Mst_Login" Relationship="Self.FK__Mst_Stude__Creat__2F10007B" FromRole="Mst_Student" ToRole="Mst_Login" />
+    <NavigationProperty Name="Mst_School" Relationship="Self.FK__Mst_Stude__Schoo__2D27B809" FromRole="Mst_Student" ToRole="Mst_School" />
+    <NavigationProperty Name="Student_Graph" Relationship="Self.FK__Student_G__Stude__5CD6CB2B" FromRole="Mst_Student" ToRole="Student_Graph" />
+    <NavigationProperty Name="Student_Pdf" Relationship="Self.FK__Student_P__Stude__37A5467C" FromRole="Mst_Student" ToRole="Student_Pdf" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK__Student_R__Stude__31EC6D26" FromRole="Mst_Student" ToRole="Student_Result" />
+  </EntityType>
+  <EntityType Name="Mst_SubTest">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="HindiName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mst_Norms" Relationship="Self.FK__Mst_Norms__SubTe__25869641" FromRole="Mst_SubTest" ToRole="Mst_Norms" />
+    <NavigationProperty Name="Student_Result" Relationship="Self.FK__Student_R__SubTe__32E0915F" FromRole="Mst_SubTest" ToRole="Student_Result" />
+  </EntityType>
+  <EntityType Name="Student_Graph">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="GraphImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Student_G__Stude__5CD6CB2B" FromRole="Student_Graph" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Student_Pdf">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Student_P__Stude__37A5467C" FromRole="Student_Pdf" ToRole="Mst_Student" />
+  </EntityType>
+  <EntityType Name="Student_Result">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StudentId" Type="Int32" />
+    <Property Name="SubTestId" Type="Int32" />
+    <Property Name="ObtainScore" Type="Int32" />
+    <Property Name="StenScore" Type="Int32" />
+    <Property Name="PerformanceScore" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NormsId" Type="Int32" />
+    <Property Name="PerformanceId" Type="Int32" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDelete" Type="Boolean" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Mst_Norms" Relationship="Self.FK__Student_R__Norms__33D4B598" FromRole="Student_Result" ToRole="Mst_Norms" />
+    <NavigationProperty Name="Mst_Performance" Relationship="Self.FK__Student_R__Perfo__34C8D9D1" FromRole="Student_Result" ToRole="Mst_Performance" />
+    <NavigationProperty Name="Mst_Student" Relationship="Self.FK__Student_R__Stude__31EC6D26" FromRole="Student_Result" ToRole="Mst_Student" />
+    <NavigationProperty Name="Mst_SubTest" Relationship="Self.FK__Student_R__SubTe__32E0915F" FromRole="Student_Result" ToRole="Mst_SubTest" />
+  </EntityType>
+  <Association Name="FK__Mst_Norms__Class__239E4DCF">
+    <End Role="Mst_Class" Type="Self.Mst_Class" Multiplicity="0..1" />
+    <End Role="Mst_Norms" Type="Self.Mst_Norms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Norms">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Stude__Class__2E1BDC42">
+    <End Role="Mst_Class" Type="Self.Mst_Class" Multiplicity="0..1" />
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Class">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Student">
+        <PropertyRef Name="ClassId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Stude__Gende__2B3F6F97">
+    <End Role="Mst_Gender" Type="Self.Mst_Gender" Multiplicity="0..1" />
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Gender">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Student">
+        <PropertyRef Name="GenderId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Login__RoleI__38996AB5">
+    <End Role="Mst_Role" Type="Self.Mst_Role" Multiplicity="0..1" />
+    <End Role="Mst_Login" Type="Self.Mst_Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Login">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Stude__Creat__2F10007B">
+    <End Role="Mst_Login" Type="Self.Mst_Login" Multiplicity="0..1" />
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Login">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Student">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Norms__Mst_S__24927208">
+    <End Role="Mst_SchoolType" Type="Self.Mst_SchoolType" Multiplicity="0..1" />
+    <End Role="Mst_Norms" Type="Self.Mst_Norms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_SchoolType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Norms">
+        <PropertyRef Name="SchoolTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Norms__SubTe__25869641">
+    <End Role="Mst_SubTest" Type="Self.Mst_SubTest" Multiplicity="0..1" />
+    <End Role="Mst_Norms" Type="Self.Mst_Norms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_SubTest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Norms">
+        <PropertyRef Name="SubTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_R__Norms__33D4B598">
+    <End Role="Mst_Norms" Type="Self.Mst_Norms" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Norms">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="NormsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_R__Perfo__34C8D9D1">
+    <End Role="Mst_Performance" Type="Self.Mst_Performance" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Performance">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="PerformanceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Schoo__Schoo__14270015">
+    <End Role="Mst_SchoolType" Type="Self.Mst_SchoolType" Multiplicity="0..1" />
+    <End Role="Mst_School" Type="Self.Mst_School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_SchoolType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_School">
+        <PropertyRef Name="SchoolTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Schoo__Schoo__17036CC0">
+    <End Role="Mst_SchoolMedium" Type="Self.Mst_SchoolMedium" Multiplicity="0..1" />
+    <End Role="Mst_School" Type="Self.Mst_School" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_SchoolMedium">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_School">
+        <PropertyRef Name="SchoolMediumId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Mst_Stude__Schoo__2D27B809">
+    <End Role="Mst_School" Type="Self.Mst_School" Multiplicity="0..1" />
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_School">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Mst_Student">
+        <PropertyRef Name="SchoolId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_G__Stude__5CD6CB2B">
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="0..1" />
+    <End Role="Student_Graph" Type="Self.Student_Graph" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Graph">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_P__Stude__37A5467C">
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="0..1" />
+    <End Role="Student_Pdf" Type="Self.Student_Pdf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Pdf">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_R__Stude__31EC6D26">
+    <End Role="Mst_Student" Type="Self.Mst_Student" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_Student">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Student_R__SubTe__32E0915F">
+    <End Role="Mst_SubTest" Type="Self.Mst_SubTest" Multiplicity="0..1" />
+    <End Role="Student_Result" Type="Self.Student_Result" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Mst_SubTest">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Student_Result">
+        <PropertyRef Name="SubTestId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DishaGuidanceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Mst_Class" EntityType="Self.Mst_Class" />
+    <EntitySet Name="Mst_Gender" EntityType="Self.Mst_Gender" />
+    <EntitySet Name="Mst_Login" EntityType="Self.Mst_Login" />
+    <EntitySet Name="Mst_Norms" EntityType="Self.Mst_Norms" />
+    <EntitySet Name="Mst_Performance" EntityType="Self.Mst_Performance" />
+    <EntitySet Name="Mst_Role" EntityType="Self.Mst_Role" />
+    <EntitySet Name="Mst_School" EntityType="Self.Mst_School" />
+    <EntitySet Name="Mst_SchoolMedium" EntityType="Self.Mst_SchoolMedium" />
+    <EntitySet Name="Mst_SchoolType" EntityType="Self.Mst_SchoolType" />
+    <EntitySet Name="Mst_Student" EntityType="Self.Mst_Student" />
+    <EntitySet Name="Mst_SubTest" EntityType="Self.Mst_SubTest" />
+    <EntitySet Name="Student_Graph" EntityType="Self.Student_Graph" />
+    <EntitySet Name="Student_Pdf" EntityType="Self.Student_Pdf" />
+    <EntitySet Name="Student_Result" EntityType="Self.Student_Result" />
+    <AssociationSet Name="FK__Mst_Norms__Class__239E4DCF" Association="Self.FK__Mst_Norms__Class__239E4DCF">
+      <End Role="Mst_Class" EntitySet="Mst_Class" />
+      <End Role="Mst_Norms" EntitySet="Mst_Norms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Stude__Class__2E1BDC42" Association="Self.FK__Mst_Stude__Class__2E1BDC42">
+      <End Role="Mst_Class" EntitySet="Mst_Class" />
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Stude__Gende__2B3F6F97" Association="Self.FK__Mst_Stude__Gende__2B3F6F97">
+      <End Role="Mst_Gender" EntitySet="Mst_Gender" />
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Login__RoleI__38996AB5" Association="Self.FK__Mst_Login__RoleI__38996AB5">
+      <End Role="Mst_Role" EntitySet="Mst_Role" />
+      <End Role="Mst_Login" EntitySet="Mst_Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Stude__Creat__2F10007B" Association="Self.FK__Mst_Stude__Creat__2F10007B">
+      <End Role="Mst_Login" EntitySet="Mst_Login" />
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Norms__Mst_S__24927208" Association="Self.FK__Mst_Norms__Mst_S__24927208">
+      <End Role="Mst_SchoolType" EntitySet="Mst_SchoolType" />
+      <End Role="Mst_Norms" EntitySet="Mst_Norms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Norms__SubTe__25869641" Association="Self.FK__Mst_Norms__SubTe__25869641">
+      <End Role="Mst_SubTest" EntitySet="Mst_SubTest" />
+      <End Role="Mst_Norms" EntitySet="Mst_Norms" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_R__Norms__33D4B598" Association="Self.FK__Student_R__Norms__33D4B598">
+      <End Role="Mst_Norms" EntitySet="Mst_Norms" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_R__Perfo__34C8D9D1" Association="Self.FK__Student_R__Perfo__34C8D9D1">
+      <End Role="Mst_Performance" EntitySet="Mst_Performance" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Schoo__Schoo__14270015" Association="Self.FK__Mst_Schoo__Schoo__14270015">
+      <End Role="Mst_SchoolType" EntitySet="Mst_SchoolType" />
+      <End Role="Mst_School" EntitySet="Mst_School" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Schoo__Schoo__17036CC0" Association="Self.FK__Mst_Schoo__Schoo__17036CC0">
+      <End Role="Mst_SchoolMedium" EntitySet="Mst_SchoolMedium" />
+      <End Role="Mst_School" EntitySet="Mst_School" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Mst_Stude__Schoo__2D27B809" Association="Self.FK__Mst_Stude__Schoo__2D27B809">
+      <End Role="Mst_School" EntitySet="Mst_School" />
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_G__Stude__5CD6CB2B" Association="Self.FK__Student_G__Stude__5CD6CB2B">
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+      <End Role="Student_Graph" EntitySet="Student_Graph" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_P__Stude__37A5467C" Association="Self.FK__Student_P__Stude__37A5467C">
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+      <End Role="Student_Pdf" EntitySet="Student_Pdf" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_R__Stude__31EC6D26" Association="Self.FK__Student_R__Stude__31EC6D26">
+      <End Role="Mst_Student" EntitySet="Mst_Student" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Student_R__SubTe__32E0915F" Association="Self.FK__Student_R__SubTe__32E0915F">
+      <End Role="Mst_SubTest" EntitySet="Mst_SubTest" />
+      <End Role="Student_Result" EntitySet="Student_Result" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

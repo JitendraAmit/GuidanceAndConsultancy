@@ -1,0 +1,172 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.StudentViewModel.StudentListViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                 
+                    <div class="col-sm-6 col-10 mb-md-4 mt-2 mb-xl-0 mb-0">
+                        <h4 class="card-title">Student List</h4>
+                    </div>
+                    <div class="col-sm-6 col-2">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.SuperAdministrator.RoleName) || User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.Administrator.RoleName))
+                            {
+                                <div class="d-flex align-items-center justify-content-md-end">
+                                    <div class="pr-1 mb-3 mb-xl-0">
+                                        @*<a href="@Url.Action("Create","Student")" class="btn btn-info btn-rounded btn-icon plus-btn">
+            <i class="mdi mdi-plus"></i>
+        </a>*@
+                                        <a href="@Url.Action("Create","Student")" class="btn btn-primary">
+                                            Add New Student
+                                        </a>
+
+                                    </div>
+                                </div>
+                            }
+                        }
+
+
+                    </div>
+                </div>
+                </div>
+                <div class="card-body">
+                    <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                        <thead>
+                            <tr>
+                                <th>Sr No</th>
+                                <th>Name</th>
+                                <th>Father Name</th>
+                                <th>Gender</th>
+                                <th>Class</th>
+                                <th>School</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.StudentModel != null)
+                            {
+                                if (Model.StudentModel.Count > 0)
+                                {
+                                    int srNo = 0;
+                                    foreach (var items in Model.StudentModel)
+                                    {
+                                        var status = "";
+                                        var statusClass = "";
+                                        var btnValue = "";
+                                        var statusVeryfy = "";
+                                        var statusClassVeryfy = "";
+                                        var btnValueVeryfy = "";
+                                        if (items.IsVerified == true)
+                                        {
+                                            statusVeryfy = "";
+                                            statusClassVeryfy = "badge-soft-success";
+                                            //btnValueVeryfy = "Pending";
+                                        }
+                                        else
+                                        {
+                                            statusVeryfy = "Pending";
+                                            statusClassVeryfy = "badge-soft-warning";
+                                            btnValueVeryfy = "Verify";
+                                        }
+
+                                        if (items.IsActive == true)
+                                        {
+                                            status = "Active";
+                                            statusClass = "badge-soft-success";
+                                            btnValue = "In-Active";
+                                        }
+                                        else
+                                        {
+                                            status = "In-Active";
+                                            statusClass = "badge-soft-danger";
+                                            btnValue = "Active";
+                                        }
+                                        <tr>
+                                            <td>@(srNo+=1)</td>
+                                            <td>
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.SuperAdministrator.RoleName) || User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.Administrator.RoleName))
+                                                    {<a href="@Url.Action("View","Student", new { Id=items.Id})">@items.Name</a>}
+                                            }
+                                            else if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.User.RoleName))
+                                            {
+                                                if (items.IsVerified == false)
+                                                {
+                                                    @items.Name
+                                                }
+                                            }
+
+
+                                            </td>
+                                            <td>@items.FatherName</td>
+                                            <td>@items.Mst_Gender.Name</td>
+                                            <td>@items.Mst_Class.Name</td>
+                                            <td>@items.Mst_School.Name</td>
+                                            <td><span class="badge rounded-pill font-size-12 fw-medium @statusClassVeryfy">@statusVeryfy</span> <span class="badge rounded-pill font-size-12 fw-medium @statusClass">@status</span></td>
+                                            <td>
+                                                <div class="btn-group" role="group">
+                                                    @if (User.Identity.IsAuthenticated)
+                                                    {
+                                                        if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.SuperAdministrator.RoleName) || User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.Administrator.RoleName))
+                                                        {
+                                                            <a href="@Url.Action("View","Student", new { id=items.Id})" class="btn btn-info" style="margin-right:10px;"><i class="fa fa-eye"></i></a>
+                                                        }
+                                                    }
+                                                            
+                                                            <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                                                    aria-expanded="false">
+                                                                Action <i class="mdi mdi-chevron-down"></i>
+                                                            </button>
+
+                                                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                                @if (User.Identity.IsAuthenticated)
+                                                                {
+                                                                    if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.SuperAdministrator.RoleName) || User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.Administrator.RoleName))
+                                                                    {
+                                                                        <li><a class="dropdown-item" href="@Url.Action("View","Student", new { id=items.Id})">View Detail</a></li>
+                                                                        <li><a class="dropdown-item" href="@Url.Action("ChangeStatus","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to change status ?');">@btnValue</a></li>
+
+                                                                        <li><a class="dropdown-item" href="@Url.Action("Edit","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to edit?');">Edit</a></li>
+                                                                        <li><a class="dropdown-item" href="@Url.Action("Delete","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to delete?');">Delete</a></li>
+                                                                    }
+                                                                    else if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.User.RoleName))
+                                                                    {
+                                                                        if (items.IsVerified == false)
+                                                                        {
+                                                                            <li><a class="dropdown-item" href="@Url.Action("ChangeStatus","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to change status ?');">@btnValue</a></li>
+                                                                            <li><a class="dropdown-item" href="@Url.Action("Edit","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to edit?');">Edit</a></li>
+                                                                            <li><a class="dropdown-item" href="@Url.Action("Delete","Student", new { id=items.Id})" onclick="return confirm('Are you sure want to delete?');">Delete</a></li>
+                                                                        }
+
+                                                                    }
+                                                                }
+
+                                                            </ul>
+
+
+                                                        </div>
+
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            }
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+    </div>
+</div>
+
+
+

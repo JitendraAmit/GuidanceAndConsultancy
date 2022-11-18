@@ -1,0 +1,31 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>_Error</title>
+
+    <link href="~/Assets/admin/css/bootstrap.min.css" rel="stylesheet" />
+  
+</head>
+<body style="background-color:#8080801c;">
+
+
+    <div class="container">
+        <div class="text-center" style="padding-top:200px;">
+            <span style="font-size:100px;"><strong>OOPS !!!</strong> </span><br />
+            <span><strong>Something went wrong</strong></span>
+            <br /><br />
+            <a href="@Url.Action("Index","Dashboard", new { area="Admin"})" class="btn btn-primary ">Back To Home Page</a>
+        </div>
+    </div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,171 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.StudentViewModel.StudentDetailViewModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="btn-group" role="group">
+
+    <a href="@Url.Action("Edit","Student", new { Id=Model.Id})" class="btn btn-warning">Edit</a>
+
+    @if (Model.IsVerified == true)
+    {
+        <a href="@Url.Action("Print","Student", new { Id=Model.Id})" class="btn btn-primary"  style="margin-left:10px;" target="_blank">Print</a>
+
+    }
+
+</div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">Name : @Model.Name </h4>
+                        </div>
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">Father Name : @Model.FatherName</h4>
+                        </div>
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">Contact No : @Model.ContactNo </h4>
+                        </div>
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">Gender : @Model.Gender </h4>
+                        </div>
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">Class : @Model.Class  </h4>
+                        </div>
+                        <div class="col-sm-3 col-3">
+                            <h4 class="card-title">School Type : @Model.SchoolType</h4>
+                        </div>
+
+                        <div class="col-sm-6 col-6">
+
+
+                            <h4 class="card-title">School : @Model.School</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-sm-9 col-9">
+                            <table class="table table-bordered dt-responsive nowrap w-100 dataTable no-footer  text-center">
+                                <thead>
+                                    <tr>
+                                        <th rowspan="2">Sr No.</th>
+                                        <th rowspan="2">Sub Test</th>
+                                        <th rowspan="2">Score Obtained</th>
+                                        <th rowspan="2">Sten Score</th>
+                                        <th colspan="3">Performance</th>
+                                    </tr>
+                                    <tr>
+                                        <th>High</th>
+                                        <th>Average</th>
+                                        <th>Low</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.StudentResultList != null)
+                                    {
+                                        if (Model.StudentResultList.Count > 0)
+                                        {
+                                            int srNo = 0;
+                                            foreach (var items in Model.StudentResultList)
+                                            {
+                                                <tr>
+
+                                                    <td>@(srNo+=1)</td>
+                                                    <td>@items.SubTest</td>
+                                                    <td>@items.ScoreObtained</td>
+                                                    <td>@items.StenScore</td>
+                                                    @if (items.Performance == "High")
+                                                    {
+                                                        <td><i class="fa fa-check"></i></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    }
+                                                    else if (items.Performance == "Average")
+                                                    {
+                                                        <td></td>
+                                                        <td><i class="fa fa-check"></i></td>
+                                                        <td></td>
+                                                    }
+                                                    else if (items.Performance == "Low")
+                                                    {
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td><i class="fa fa-check"></i></td>
+                                                    }
+                                                    else
+                                                    {
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+
+                                                    }
+
+                                                </tr>
+                                            }
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-6">
+                            <div>
+                                <img src="@Model.BarChartImagePath" width="100%" />
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-6">
+
+                            @using (Html.BeginForm("SaveSuggeation", "Student"))
+                            {
+
+                                @Html.HiddenFor(m => m.Id, new { @Value = Model.Id })
+                                @Html.LabelFor(m => m.Suggestions, "Remark / Suggesation")<br />
+                                @Html.TextAreaFor(m => m.Suggestions, new { rows = "6", @id = "Fulleditor", @class = "form-control" })<br />
+
+                                <button class="btn btn-success">Save</button>
+                                @*if (Model.IsPdfPath == true)
+                    {
+                        <a href="@Model.PdfPath" class="btn btn-primary" target="_blank">Print Pdf</a>
+                    }*@
+                            }
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @section CustomScript{
+        <script src="~/Assets/admin/ckeditor/ckeditor.js"></script>
+        <script src="~/Assets/admin/ckeditor/config.js"></script>
+        <script src="~/Assets/admin/ckeditor/adapters/jquery.js"></script>
+
+        <script type="text/javascript">
+
+            $(function () {
+
+                CKEDITOR.replace('Fulleditor',
+                    //{ filebrowserImageUploadUrl: '/Editor/UploadCKEditor' }
+                    {
+                        height: 300,
+                        filebrowserUploadUrl: '../../Admin/News/UploadCKEditor',
+                        filebrowserBrowseUrl: '/Admin/News/FileBrowse'
+                    });
+
+
+            });
+
+        </script>
+    }

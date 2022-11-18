@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DishaGuidanceModelStoreContainer" CdmEntityContainer="DishaGuidanceEntities">
+    <EntitySetMapping Name="Mst_Class">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Class">
+        <MappingFragment StoreEntitySet="Mst_Class">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Gender">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Gender">
+        <MappingFragment StoreEntitySet="Mst_Gender">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Login">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Login">
+        <MappingFragment StoreEntitySet="Mst_Login">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Norms">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Norms">
+        <MappingFragment StoreEntitySet="Mst_Norms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="SchoolTypeId" ColumnName="SchoolTypeId" />
+          <ScalarProperty Name="SubTestId" ColumnName="SubTestId" />
+          <ScalarProperty Name="MinRange" ColumnName="MinRange" />
+          <ScalarProperty Name="MaxRange" ColumnName="MaxRange" />
+          <ScalarProperty Name="StenScore" ColumnName="StenScore" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Performance">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Performance">
+        <MappingFragment StoreEntitySet="Mst_Performance">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MinRange" ColumnName="MinRange" />
+          <ScalarProperty Name="MaxRange" ColumnName="MaxRange" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Role">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Role">
+        <MappingFragment StoreEntitySet="Mst_Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_School">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_School">
+        <MappingFragment StoreEntitySet="Mst_School">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="SchoolTypeId" ColumnName="SchoolTypeId" />
+          <ScalarProperty Name="SchoolMediumId" ColumnName="SchoolMediumId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_SchoolMedium">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_SchoolMedium">
+        <MappingFragment StoreEntitySet="Mst_SchoolMedium">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_SchoolType">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_SchoolType">
+        <MappingFragment StoreEntitySet="Mst_SchoolType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_Student">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_Student">
+        <MappingFragment StoreEntitySet="Mst_Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="SchoolId" ColumnName="SchoolId" />
+          <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+          <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="Suggestions" ColumnName="Suggestions" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mst_SubTest">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Mst_SubTest">
+        <MappingFragment StoreEntitySet="Mst_SubTest">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="HindiName" ColumnName="HindiName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Graph">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Student_Graph">
+        <MappingFragment StoreEntitySet="Student_Graph">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="GraphImagePath" ColumnName="GraphImagePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Pdf">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Student_Pdf">
+        <MappingFragment StoreEntitySet="Student_Pdf">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Student_Result">
+      <EntityTypeMapping TypeName="DishaGuidanceModel.Student_Result">
+        <MappingFragment StoreEntitySet="Student_Result">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+          <ScalarProperty Name="SubTestId" ColumnName="SubTestId" />
+          <ScalarProperty Name="ObtainScore" ColumnName="ObtainScore" />
+          <ScalarProperty Name="StenScore" ColumnName="StenScore" />
+          <ScalarProperty Name="PerformanceScore" ColumnName="PerformanceScore" />
+          <ScalarProperty Name="NormsId" ColumnName="NormsId" />
+          <ScalarProperty Name="PerformanceId" ColumnName="PerformanceId" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

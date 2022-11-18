@@ -1,0 +1,104 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.NormsViewModel.CreateEditNormsViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0 font-size-18">Norms</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Disha Guidance</a></li>
+                    <li class="breadcrumb-item active">Add Norms</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Add New Norms</h4>
+
+            </div>
+            <div class="card-body p-4">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+
+                            @using (Html.BeginForm("Create", "Norms", FormMethod.Post))
+                            {
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                      
+                                        @Html.LabelFor(m => m.ClassId, "Class", new { @class = "form-label" })
+                                        @Html.DropDownListFor(m => m.ClassId, Model.SelectClassList, "--Select--", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.ClassId)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        
+                                        @Html.LabelFor(m => m.SchoolTypeId, "School Type", new { @class = "form-label" })
+                                        @Html.DropDownListFor(m => m.SchoolTypeId, Model.SelectSchoolTypeList, "--Select--", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.SchoolTypeId)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                      
+                                        @Html.LabelFor(m => m.SubTestId, "Sub Test", new { @class = "form-label" })
+                                        @Html.DropDownListFor(m => m.SubTestId, Model.SelectSubTestList, "--Select--", new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(m => m.SubTestId)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="formrow-firstname-input">Min Value</label>
+                                        @Html.LabelFor(m => m.MinRange, new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.MinRange, new { @class = "form-control", @id = "formrow-firstname-input", @placeholder = "Enter Min Value" })
+                                        @Html.ValidationMessageFor(m => m.MinRange)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                       
+                                        @Html.LabelFor(m => m.MaxRange, "Max Value", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.MaxRange, new { @class = "form-control", @placeholder = "Enter Max Value" })
+                                        @Html.ValidationMessageFor(m => m.MaxRange)
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                       
+                                        @Html.LabelFor(m => m.StenScore, "Sten Score Value", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.StenScore, new { @class = "form-control", @placeholder = "Enter Sten Score" })
+                                        @Html.ValidationMessageFor(m => m.StenScore)
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="mt-4">
+
+                                    <button type="submit" class="btn btn-primary w-md">Submit</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form Layout -->

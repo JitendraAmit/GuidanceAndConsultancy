@@ -1,0 +1,176 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.SearchViewModel.SearchDataModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+@section CustomHeader{
+    <!-- datepicker css -->
+  
+}
+
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+
+                    <div class="col-sm-12 col-12 mb-md-4 mt-2 mb-xl-0 mb-0">
+                        @using (Html.BeginForm("Search", "SearchStudent"))
+                        {
+                            @Html.ValidationSummary(true)
+                            @Html.AntiForgeryToken()
+
+
+
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.Name, new { @class = "name form-control" })
+                                        @Html.ValidationMessageFor(m => m.Name)
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.ContactNo, "Conatct No", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.ContactNo, new { @class = "contactNo form-control" })
+                                        @Html.ValidationMessageFor(m => m.ContactNo)
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.CreatedById, "Created By", new { @class = "form-label" })
+                                        @Html.DropDownListFor(m => m.CreatedById, Model.SelectUserList, "--Select--", new { @class = "createdBy form-control" })
+                                        @Html.ValidationMessageFor(m => m.CreatedById)
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.StartDate, "Start Date", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.StartDate, new { @class = "sDate form-control", @id = "startDate" })
+                                        @Html.ValidationMessageFor(m => m.StartDate)
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mb-3">
+                                        @Html.LabelFor(m => m.EndDate, "End Date", new { @class = "form-label" })
+                                        @Html.TextBoxFor(m => m.EndDate, new { @class = "eDate form-control", @id = "endDate" })
+                                        @Html.ValidationMessageFor(m => m.EndDate)
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="mt-4">
+                                  <button type="button" id="btnSave"  class="btn btn-primary w-md">Search</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        }
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body p-4">
+
+            <table class="table" id="searcreport">
+                <tr>
+                    <th>SrNo</th>
+                    <th>Name</th>
+                    <th>Father Name</th>
+                    <th>Contact No</th>
+                    <th>Gender</th>
+                    <th>Class</th>
+                    <th>School</th>
+                    <th>View Details</th>
+                </tr>
+                <tbody class="bindbody"></tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form Layout -->
+
+@section CustomScript{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('#startDate').flatpickr();
+            $('#endDate').flatpickr();
+            $("#searcreport").hide();
+        });
+        var pageNo = 1;
+        var Limit = 10;
+
+        $('#btnSave').click(function () {
+
+            filters(pageNo);
+        });
+
+        function filters(_pageNo) {
+            var param = {
+                Name: $(".name").val(),
+                ContactNo: $(".contactNo").val(),
+                CreatedById: $(".createdBy").val(),
+                StartDate: $(".sDate").val(),
+                EndDate: $(".eDate").val(),
+                PageNo: _pageNo,
+                PageLimit: Limit
+            };
+
+            $.ajax({
+                url:"@Url.Action("Search", "SearchStudent")",
+                data: JSON.stringify(param),
+                method: "POST",
+                dataType: "JSON",
+                contentType: "application/json",
+                success: function (response) {
+                    console.log(response);
+                    $(".bindbody").empty();
+                    var SrNo = 0;
+                    var str = "";
+                    for (i = 0; i < response.StudentListModel.length; i++) {
+                        SrNo++;
+                      /*  alert(response.StudentListModel[i].Name);*/
+                        str = str + '<tr>';
+                        str = str + '<td>' + SrNo + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].Name + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].ContactNo + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].FatherName + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].Gender + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].Class + '</td>';
+                        str = str + '<td>' + response.StudentListModel[i].School + '</td>';
+                        str = str + '<td><a href="/Admin/Student/View/'+ response.StudentListModel[i].Id +'" class="btn btn-info" style="margin-right:10px;"><i class="fa fa-eye"></i></a></td>';
+                        //str = str + '<td class="newstitle"><a href=' + _link + ' target="_blank">' + response.NewsModel[i].Title + '</a></td>';
+
+                        //str = str + '<td>' + response.NewsModel[i].TypeName + '</td>';
+                        //str = str + '<td>' + dateFormat(new Date(parseInt((response.NewsModel[i].CreatedOn).match(/\d+/)[0]))) + '</td>';
+
+
+                        str = str + '</tr>';
+                    }
+                    $(".bindbody").html(str);
+                    $("#searcreport").show();
+                },
+                error: function () {
+                    alert('error');
+                }
+
+            });
+        };
+
+
+
+    </script>
+
+
+
+}
+
+

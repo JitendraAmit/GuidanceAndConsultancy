@@ -1,0 +1,115 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.SchoolViewModel.SchoolListViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<!-- start page title -->
+@*<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+            <h4 class="mb-sm-0 font-size-18">School List</h4>
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="javascript: void(0);">Disha Guidance</a></li>
+                    <li class="breadcrumb-item active">All School</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>*@
+<!-- end page title -->
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+
+                    <div class="col-sm-6 col-10 mb-md-4 mt-2 mb-xl-0 mb-0">
+                        <h4 class="card-title">School List</h4>
+                    </div>
+                    <div class="col-sm-6 col-2">
+                        <div class="d-flex align-items-center justify-content-md-end">
+                            <div class="pr-1 mb-3 mb-xl-0">
+                                @*<a href="@Url.Action("Create","School")" class="btn btn-info btn-rounded btn-icon plus-btn">
+            <i class="mdi mdi-plus"></i>
+        </a>*@
+                                <a href="@Url.Action("Create","School")" class="btn btn-primary">
+                                    Add New School
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
+                    <thead>
+                        <tr>
+                            <th>Sr No</th>
+                            <th>School Name</th>
+                            <th>School Type</th>
+                            <th>School Medium</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       @if(Model.SchoolModel !=null)
+                       {
+                           if(Model.SchoolModel.Count>0)
+                           {
+                               int srNo = 0;
+                               foreach(var items in Model.SchoolModel)
+                               {
+                                   var status = "";
+                                   var statusClass = "";
+                                   var btnValue = "";
+
+                                   if (items.IsActive == true)
+                                   {
+                                       status = "Active";
+                                       statusClass = "badge-soft-success";
+                                       btnValue = "In-Active";
+                                   }
+                                   else
+                                   {
+                                       status = "In-Active";
+                                       statusClass = "badge-soft-danger";
+                                       btnValue = "Active";
+                                   }
+                        <tr>
+                            <td>@(srNo+=1)</td>
+                            <td>@items.Name</td>
+                            <td>@items.Mst_SchoolType.Name</td>
+                            <td>@items.Mst_SchoolMedium.Name</td>
+                            <td><span class="badge rounded-pill font-size-12 fw-medium @statusClass">@status</span></td>
+                            <td>
+                                <div class="btn-group" role="group">
+                                    <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        Action <i class="mdi mdi-chevron-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <li><a class="dropdown-item" href="@Url.Action("ChangeStatus","School", new { id=items.Id})" onclick="return confirm('Are you sure want to change status ?');">@btnValue</a></li>
+
+                                        <li><a class="dropdown-item" href="@Url.Action("Edit","School", new { id=items.Id})" onclick="return confirm('Are you sure want to edit?');">Edit</a></li>
+                                        <li><a class="dropdown-item" href="@Url.Action("Delete","School", new { id=items.Id})" onclick="return confirm('Are you sure want to delete?');">Delete</a></li>
+                                    </ul>
+                                </div>
+
+                            </td>
+                        </tr>
+                               }
+                           }
+                       }
+                    <tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

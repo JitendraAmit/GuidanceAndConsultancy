@@ -1,0 +1,219 @@
+﻿@model GuidanceConsultancy.Areas.Admin.Models.StudentViewModel.CreateEditStudentViewModel
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+<style>
+    .table > :not(caption) > * > * {
+        padding: .10rem .75rem !important;
+    }
+
+    .field-validation-error {
+        color: red;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+
+                    <div class="col-sm-6 col-10 mb-md-4 mt-2 mb-xl-0 mb-0">
+                        <h4 class="card-title">Add New Student</h4>
+                    </div>
+                    <div class="col-sm-6 col-2">
+                        <div class="d-flex align-items-center justify-content-md-end">
+                            <div class="pr-1 mb-3 mb-xl-0">
+                                <a href="@Url.Action("Index","Student")" class="btn btn-primary">Back</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-4">
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div>
+
+                            @using (Html.BeginForm("Edit", "Student", FormMethod.Post, new { id = "form1" }))
+                            {
+                                @Html.ValidationSummary(true)
+                                @Html.AntiForgeryToken()
+
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div class="row">
+                                            @Html.HiddenFor(m => m.Id, new { @id = "hdnId" })
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.Name, "Name", new { @class = "form-label" })
+                                                    @Html.TextBoxFor(m => m.Name, new { @class = "name form-control" })
+                                                    @Html.ValidationMessageFor(m => m.Name)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.FatherName, "Father Name", new { @class = "form-label" })
+                                                    @Html.TextBoxFor(m => m.FatherName, new { @class = "fathername form-control" })
+                                                    @Html.ValidationMessageFor(m => m.FatherName)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.EmailId, "Email Id", new { @class = "form-label" })
+                                                    @Html.TextBoxFor(m => m.EmailId, new { @class = "emailId form-control" })
+                                                    @Html.ValidationMessageFor(m => m.EmailId)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.ContactNo, "Conatct No", new { @class = "form-label" })
+                                                    @Html.TextBoxFor(m => m.ContactNo, new { @class = "contactNo form-control" })
+                                                    @Html.ValidationMessageFor(m => m.ContactNo)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.GenderId, "Gender", new { @class = "form-label" })
+                                                    @Html.DropDownListFor(m => m.GenderId, Model.SelectGenderList, "--Select--", new { @class = "genderId form-control" })
+                                                    @Html.ValidationMessageFor(m => m.GenderId)
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+                                                    @Html.LabelFor(m => m.ClassId, "Class", new { @class = "form-label" })
+                                                    @Html.DropDownListFor(m => m.ClassId, Model.SelectClassList, "--Select--", new { @class = "classId form-control" })
+                                                    @Html.ValidationMessageFor(m => m.ClassId)
+                                                </div>
+                                            </div>
+                                            @*<div class="col-md-6">
+            <div class="mb-3">
+
+                @Html.LabelFor(m => m.SchoolTypeId, "School Type", new { @class = "form-label" })
+                @Html.DropDownListFor(m => m.SchoolTypeId, Model.SelectSchoolTypeList, "--Select--", new { @class = "schoolTypeId form-control" })
+                @Html.ValidationMessageFor(m => m.SchoolTypeId)
+            </div>
+        </div>*@
+                                            <div class="col-md-6">
+                                                <div class="mb-3">
+
+                                                    @Html.LabelFor(m => m.SchoolId, "School", new { @class = "form-label" })
+                                                    @Html.DropDownListFor(m => m.SchoolId, Model.SelectSchoolList, "--Select--", new { @class = "schoolId form-control" })
+                                                    @Html.ValidationMessageFor(m => m.SchoolId)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <table id="subTest" class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Test</th>
+                                                            <th>Obtain Marks</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @if (Model.EditDataSubTestModel != null)
+                                                        {
+                                                            if (Model.EditDataSubTestModel.Count > 0)
+                                                            {
+                                                                foreach (var items in Model.EditDataSubTestModel)
+                                                                {
+                                                                    
+                                                                    <tr>
+                                                                        <td>@items.TestName <input type="hidden" value="@items.TestId" class="testId" /></td>
+                                                                        <td><input type="text" class="form-control testname" required="required" value="@items.ObtainMarkes" /></td>
+                                                                    </tr>
+                                                                }
+
+                                                            }
+                                                        }
+                                                    </tbody>
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+
+                                    <button form="form1" id="btnSave" class="btn btn-primary w-md">Submit</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Form Layout -->
+
+
+@section CustomScript{
+    <script type="text/javascript">
+
+        $(document).on("submit", "#form1", function (e) {
+            e.preventDefault();
+                rowTestData = [];
+                var subTestData = [];
+                var studentData;
+                $('#subTest tbody tr').each(function (row, tr) {
+                    var testId = $(tr).find('td:eq(0)').find('.testId').val();//get the value
+                    var testMarks = $(tr).find('td:eq(1)').find('input').val();// value of input box
+                   /* alert(testId + " " + testMarks);*/
+                    rowTestData.push({
+                        SubTestId: testId,
+                        Marks: testMarks
+                    });
+                });
+
+
+
+            var obj = {
+                    Id: $('#hdnId').val(),
+                    Name: $('.name').val(),
+                    FatherName: $('.fathername').val(),
+                    GenderId: $('.genderId').val(),
+                    SchoolTypeId: $('.schoolTypeId').val(),
+                    SchoolId: $('.schoolId').val(),
+                    ClassId: $('.classId').val(),
+                    ContactNo: $('.contactNo').val()
+                };
+
+                var param = {
+                    studentData:obj,
+                    subTestData: rowTestData
+                };
+
+                console.log(JSON.stringify(param));
+
+                $.ajax({
+                url: "@Url.Action("Edit", "Student")",
+                data: JSON.stringify(param),
+                method: "POST",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+
+                success: function(response) {
+                        alert("Record Saved Successfully...!")
+                        window.location.href ="@Url.Action("Index", "Student")";
+                    },
+                    error: function () {
+                        alert('error student record not saved...!');
+                 }
+               });
+            });
+
+
+
+    </script>
+
+
+
+}

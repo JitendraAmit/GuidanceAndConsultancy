@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="71bf2d804bf84e71b46b5aa207692977" Name="Diagram1">
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Class" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Gender" Width="1.5" PointX="9" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Login" Width="1.5" PointX="9" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Norms" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Performance" Width="1.5" PointX="6" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Role" Width="1.5" PointX="6.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_School" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_SchoolMedium" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_SchoolType" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_Student" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Mst_SubTest" Width="1.5" PointX="0.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Student_Graph" Width="1.5" PointX="13.5" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Student_Pdf" Width="1.5" PointX="13.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DishaGuidanceModel.Student_Result" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Norms__Class__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Stude__Class__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Stude__Gende__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Login__RoleI__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Stude__Creat__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Norms__Mst_S__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Norms__SubTe__25869641" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_R__Norms__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_R__Perfo__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Schoo__Schoo__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Schoo__Schoo__17036CC0" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Mst_Stude__Schoo__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_G__Stude__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_P__Stude__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_R__Stude__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="DishaGuidanceModel.FK__Student_R__SubTe__32E0915F" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

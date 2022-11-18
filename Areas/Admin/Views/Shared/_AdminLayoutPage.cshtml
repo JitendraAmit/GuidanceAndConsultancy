@@ -1,0 +1,221 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Assets/admin/images/favicon.ico">
+
+    <!-- plugin css -->
+    <link href="~/Assets/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="~/Assets/admin/css/preloader.min.css" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="~/Assets/admin/css/bootstrap.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/Assets/admin/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/Assets/admin/css/app.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Assets/admin/libs/flatpickr/flatpickr.min.css">
+
+    @RenderSection("CustomHeader", false)
+</head>
+<body data-layout="horizontal">
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="@Url.Action("Index","Dashboard")" class="logo logo-dark">
+                            <span class="logo-sm">
+                                @*<img src="~/Assets/admin/images/logo-sm.svg" alt="" height="24">*@
+                                <img src="~/Assets/admin/img/logo.png" height="80" />
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Assets/admin/img/logo.png" alt="" height="24"> <span class="logo-txt">Disha</span>
+                            </span>
+                        </a>
+
+                        <a href="@Url.Action("Index","Dashboard")" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="~/Assets/admin/img/logo.png" alt="" height="80">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/Assets/admin/img/logo.png" alt="" height="24"> <span class="logo-txt">Disha</span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light" data-bs-toggle="collapse" data-bs-target="#topnav-menu-content">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+
+                </div>
+
+                <div class="d-flex">
+
+
+
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" src="~/Assets/admin/img/user.jpg" />
+                            @*<img  src="~/Assets/admin/images/users/avatar-1.jpg"
+                                alt="Header Avatar">*@
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">Profile</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <!-- item-->
+
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action("Logout","Account", new { area=""})"><i class="mdi mdi-logout font-size-16 align-middle me-1"></i> Logout</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </header>
+
+        <div class="topnav">
+            <div class="container-fluid">
+                <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+
+                    <div class="collapse navbar-collapse" id="topnav-menu-content">
+                        <ul class="navbar-nav">
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "Dashboard")" id="topnav-dashboard" role="button">
+                                        <i data-feather="home"></i><span data-key="t-dashboards">Dashboard</span>
+                                    </a>
+                                </li>
+
+                                if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.SuperAdministrator.RoleName) || User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.Administrator.RoleName))
+                                {
+
+
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "School")" role="button">
+                                            <i data-feather="layout"></i><span data-key="t-horizontal">School</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "User")" role="button">
+                                            <i data-feather="layout"></i><span data-key="t-horizontal">User</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "Student")" role="button">
+                                            <i data-feather="layout"></i><span data-key="t-horizontal">Student</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "SearchStudent")" role="button">
+                                            <i data-feather="layout"></i><span data-key="t-horizontal">Search</span>
+                                        </a>
+                                    </li>
+                                }
+
+                                if (User.IsInRole(GuidanceConsultancy.Helpers.AppConstants.UserRoles.User.RoleName))
+                                {
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="@Url.Action("Index", "Student")" role="button">
+                                            <i data-feather="layout"></i><span data-key="t-horizontal">Student</span>
+                                        </a>
+                                    </li>
+                                }
+                            }
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+            <div class="page-content">
+                <div class="container-fluid">
+                    @RenderBody()
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Disha Guidance.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Design & Developd by <a href="#!" class="text-decoration-underline">Aceweb Creations</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+
+
+    </div>
+
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    <!-- JAVASCRIPT -->
+    <script src="~/Assets/admin/libs/jquery/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/jquery/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Assets/admin/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/Assets/admin/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/Assets/admin/libs/node-waves/waves.min.js"></script>
+    <script src="~/Assets/admin/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="~/Assets/admin/libs/pace-js/pace.min.js"></script>
+
+    <!-- apexcharts -->
+    <script src="~/Assets/admin/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Plugins js-->
+    <script src="~/Assets/admin/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Assets/admin/libs/admin-resources/jquery.vectormap/maps/jquery-jvectormap-world-mill-en.js"></script>
+
+    <!-- Required datatable js -->
+    <script src="~/Assets/admin/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/admin/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- validation script-->
+    <script src="~/Assets/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Assets/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <!-- dashboard init -->
+    <script src="~/Assets/admin/js/pages/dashboard.init.js"></script>
+
+
+    <!-- datepicker js -->
+    <script src="~/Assets/admin/libs/flatpickr/flatpickr.min.js"></script>
+
+    <!-- Datatable init js -->
+    <script src="~/Assets/admin/js/pages/datatables.init.js"></script>
+    <!-- init js -->
+    <script src="~/Assets/admin/js/pages/form-advanced.init.js"></script>
+
+    <script src="~/Assets/admin/js/app.js"></script>
+
+    @RenderSection("CustomScript", false)
+</body>
+</html>
